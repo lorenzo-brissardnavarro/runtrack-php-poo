@@ -4,7 +4,7 @@ class Personne {
     public string $nom;
     public string $prenom;
 
-    function __construct($nom, $prenom){
+    function __construct(string $nom, string $prenom){
         $this->nom = $nom;
         $this->prenom = $prenom;
     }
