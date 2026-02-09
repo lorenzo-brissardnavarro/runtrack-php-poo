@@ -28,11 +28,11 @@ class Produit {
         return $this->prixHT;
     }
 
-    function modifierNom($newNom){
+    function modifierNom(string $newNom){
         $this->nom = $newNom;
     }
 
-    function modifierPrixHT($newPrixHT){
+    function modifierPrixHT(float $newPrixHT){
         $this->prixHT = $newPrixHT;
     }
 

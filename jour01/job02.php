@@ -10,12 +10,12 @@ class Operation {
     }
 
     function addition(){
-        echo "L'addition de " . $this->nombre1 . " + " . $this->nombre2 . " = " . $this->nombre1+$this->nombre2;
+        return $this->nombre1 + $this->nombre2;
     }
 }
 
 $var = new Operation();
-echo($var->addition());
+echo "L'addition de " . $var->nombre1 . " + " . $var->nombre2 . " = " . $var->addition();
 
 
 ?>

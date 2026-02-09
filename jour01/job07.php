@@ -8,7 +8,7 @@ class Cercle{
         $this->rayon = $rayon;
     }
 
-    function changerRayon($newRayon){
+    function changerRayon(int $newRayon){
         $this->rayon = $newRayon;
     }
 

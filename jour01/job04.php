@@ -4,9 +4,9 @@ class Point {
     public int $x;
     public int $y;
 
-    function __construct(){
-        $this->x = 4;
-        $this->y = 6;
+    function __construct(int $x, int $y){
+        $this->x = $x;
+        $this->y = $y;
     }
 
     function afficherLesPoints(){
@@ -21,16 +21,16 @@ class Point {
         echo "y = " . $this->y . "<br>";
     }
 
-    function changerX($newX){
+    function changerX(int $newX){
         $this->x = $newX;
     }
 
-    function changerY($newY){
+    function changerY(int $newY){
         $this->y = $newY;
     }
 }
 
-$point = new Point();
+$point = new Point(4,6);
 $point->afficherLesPoints();
 $point->afficherX();
 $point->afficherY();

@@ -5,9 +5,9 @@ class Personnage {
     public int $x;
     public int $y;
 
-    function __construct(){
-        $this->x = 2;
-        $this->y = 5;
+    function __construct(int $x, int $y){
+        $this->x = $x;
+        $this->y = $y;
     }
 
     function position(){
@@ -32,7 +32,7 @@ class Personnage {
 
 }
 
-$pers = new Personnage();
+$pers = new Personnage(2,5);
 foreach ($pers->position() as $key => $value) {
     echo $value . "<br>";
 }
