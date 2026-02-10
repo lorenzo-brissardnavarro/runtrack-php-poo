@@ -19,7 +19,7 @@ class Student {
         return $this->nom;
     }
 
-    function getPrenom(): int{
+    function getPrenom(): string{
         return $this->prenom;
     }
 
