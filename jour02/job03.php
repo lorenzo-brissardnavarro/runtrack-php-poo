@@ -25,59 +25,58 @@ class Livre {
         return $this->nbPages;
     }
 
-    function setTitre(string $newTitre){
+    function setTitre(string $newTitre): void{
         $this->titre = $newTitre;
     }
 
-    function setAuteur(string $newAuteur){
+    function setAuteur(string $newAuteur): void{
         $this->auteur = $newAuteur;
     }
 
-    function setPages(int $newPages){
+    function setPages(int $newPages): bool{
         if($newPages > 0){
             $this->nbPages = $newPages;
+            return True;
         } else {
-            echo "Le nombre de pages doit être supérieur à 0<br>";
+            return False;
         }
         
     }
 
-    function verification(){
+    function verification(): bool{
         if($this->disponible){
-            echo "Le livre est disponible<br>";
             return True;
         } else{
-            echo "Livre non disponible<br>";
             return False;
         }
     }
 
-    function emprunter(){
+    function emprunter(): bool{
         if($this->verification()){
             $this->disponible = False;
-            echo "Livre emprunté<br>";
             return True;
         } else{
-            echo "Impossible d'emprunter un livre non disponible<br>";
             return False;
         }
     }
 
-    function rendre(){
-        if($this->verification()){
+    function rendre(): bool{
+        if(!$this->verification()){
             $this->disponible = True;
-            echo "Livre rendu<br>";
             return True;
         } else {
-            echo "Impossible de rendre un livre non emprunté<br>";
             return False;
         }
     }
 }
 
 $livre = new Livre("Le Petit Prince", "Antoine de Saint-Exupéry", 93);
-$livre->emprunter();
-$livre->rendre();
+if ($livre->emprunter()) {
+    echo "Livre emprunté<br>";
+}
+if ($livre->rendre()) {
+    echo "Livre rendu<br>";
+}
     
 
 

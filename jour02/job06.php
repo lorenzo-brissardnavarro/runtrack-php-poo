@@ -11,52 +11,57 @@ class Commande {
         $this->statut = "En cours";
     }
 
-    function ajout_plat(string $newPlat, int $newPrix){
-        array_push($this->plats, ["plat" => $newPlat, "prix" => $newPrix]);
+
+    function ajout_plat(string $newPlat, float $newPrix): bool {
+        if ($this->statut !== "En cours") {
+            return False;
+        }
+        if ($newPrix > 0) {
+            $this->plats[$newPlat] = $newPrix;
+            return True;
+        }
+        return False;
     }
 
-    private function total_commande(){
-        $prix = 0;
-        foreach ($this->plats as $value) {
-            foreach ($value as $key => $valeur) {
-                if($key === "prix"){
-                    $prix+=$valeur;
-                }
-            }
-        }
-        return $prix;
+    function annuler_commande(): void {
+        $this->statut = "annulée";
     }
 
-    function afficher_commande(){
-        $chaine = '[ ';
-        foreach ($this->plats as $value) {
-            foreach ($value as $key => $valeur) {
-                if($key === "plat"){
-                    $chaine .= $valeur . " ";
-                }
-            }
+    private function total_commande(): float {
+        $total = 0;
+        foreach ($this->plats as $prix) {
+            $total += $prix;
         }
-        $chaine .= '] pour un prix de ' . $this->total_commande() . " euros et le statut de la commande est " . $this->statut . "<br>";
+        return $total;
+    }
+
+    function prix_tva(): float {
+        return $this->total_commande() * 0.20;
+    }
+
+    function afficherCommande(): string {
+        $chaine = "Commande n°" . $this->num_commande . "<br>";
+        $chaine .= "Plats : ";
+        foreach ($this->plats as $nom => $prix) {
+            $chaine .= $nom . " (" . $prix . " €) ";
+        }
+        $total = $this->total_commande();
+        $tva = $this->prix_tva();
+        $chaine .= "<br>Statut : " . $this->statut . "<br>";
+        $chaine .= "Total HT : " . $total . "€<br>";
+        $chaine .= "TVA : " . $tva . "€<br>";
+        $chaine .= "Total TTC : " . ($total + $tva) . " €<br>";
         return $chaine;
-    }
-
-    function prix_tva(){
-        $prix = $this->total_commande();
-        return $prix * 1.2;
-    }
-
-    function annuler_commande(){
-        $this->plats = [];
     }
 
 }
 
 $commande = new Commande(1);
-$commande->ajout_plat("pâtes", 2);
-$commande->ajout_plat("banane", 4);
-$commande->ajout_plat("chocolat", 6);
-echo($commande->afficher_commande());
-echo($commande->prix_tva() . " euros");
+$commande->ajout_plat("Pâtes", 8);
+$commande->ajout_plat("Banane", 4);
+$commande->ajout_plat("Chocolat", 6);
+echo $commande->afficherCommande();
+$commande->annuler_commande();
 
 
 

@@ -17,11 +17,11 @@ class Rectangle {
         return $this->largeur;
     }
 
-    function setLongueur(int $newLongueur){
+    function setLongueur(int $newLongueur): void{
         $this->longueur = $newLongueur;
     }
 
-    function setLargeur(int $newLargeur){
+    function setLargeur(int $newLargeur): void{
         $this->largeur = $newLargeur;
     }
 }
@@ -29,8 +29,8 @@ class Rectangle {
 $rectangle = new Rectangle(10,5);
 echo("Longueur du rectangle : " . $rectangle->getLongueur() . "<br>");
 echo("Largeur du rectangle : " . $rectangle->getLargeur() . "<br>");
-echo($rectangle->setLongueur(8));
-echo($rectangle->setLargeur(3));
+$rectangle->setLongueur(8);
+$rectangle->setLargeur(3);
 echo("Nouvelle Longueur du rectangle : " . $rectangle->getLongueur() . "<br>");
 echo("Nouvelle Largeur du rectangle : " . $rectangle->getLargeur() . "<br>");
 

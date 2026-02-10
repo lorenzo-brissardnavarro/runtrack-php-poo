@@ -27,33 +27,30 @@ class Student {
         return $this->numero;
     }
 
-    function getCredtis(): int{
+    function getCredits(): int{
         return $this->nbCredits;
     }
 
 
-    function setNom(string $newNom){
+    function setNom(string $newNom): void{
         $this->nom = $newNom;
     }
 
-    function setPrenom(string $newPrenom){
+    function setPrenom(string $newPrenom): void{
         $this->prenom = $newPrenom;
     }
 
-    function setNumero(int $newNum){
+    function setNumero(int $newNum): void{
         $this->numero = $newNum;
     }
 
-    function setCredits(int $newCredits){
-        $this->nbCredits = $newCredits;
-    }
-
-    function add_credits(int $newCredits){
+    function add_credits(int $newCredits): bool{
         if($newCredits > 0){
             $this->nbCredits += $newCredits;
             $this->level = $this->studentEval();
+            return True;
         } else {
-            echo "Le nombre de crédits doit être supérieur à 0<br>";
+            return False;
         }
     }
 
@@ -71,24 +68,21 @@ class Student {
         }
     }
 
-    function studentInfo(){
-        echo("Nom = " . $this->nom . "<br>");
-        echo("Prénom = " . $this->prenom . "<br>");
-        echo("id = " . $this->numero . "<br>");
-        echo("Niveau = " . $this->level . "<br>");
+    function studentInfo(): string{
+        return "Nom = " . $this->nom . "<br> Prénom = " . $this->prenom . "<br> id = " . $this->numero . "<br> Niveau = " . $this->level . "<br>";
     }
 }
 
 $etudiant = new Student("Doe", "John", 145);
-echo("Nombre de crédits au départ : " . $etudiant->getCredtis() . "<br>");
+echo("Nombre de crédits au départ : " . $etudiant->getCredits() . "<br>");
 $etudiant->add_credits(-2);
 $etudiant->add_credits(1);
-echo("Nombre de crédits après 1 tour : " . $etudiant->getCredtis() . "<br>");
+echo("Nombre de crédits après 1 tour : " . $etudiant->getCredits() . "<br>");
 $etudiant->add_credits(1);
-echo("Nombre de crédits après 2 tours : " . $etudiant->getCredtis() . "<br>");
+echo("Nombre de crédits après 2 tours : " . $etudiant->getCredits() . "<br>");
 $etudiant->add_credits(75);
-echo("Nombre de crédits après 3 tours : " . $etudiant->getCredtis() . "<br>");
-$etudiant->studentInfo();
+echo("Nombre de crédits après 3 tours : " . $etudiant->getCredits() . "<br>");
+echo($etudiant->studentInfo());
 
 
 

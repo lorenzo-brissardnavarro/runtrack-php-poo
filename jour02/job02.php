@@ -23,19 +23,20 @@ class Livre {
         return $this->nbPages;
     }
 
-    function setTitre(string $newTitre){
+    function setTitre(string $newTitre): void{
         $this->titre = $newTitre;
     }
 
-    function setAuteur(string $newAuteur){
+    function setAuteur(string $newAuteur): void{
         $this->auteur = $newAuteur;
     }
 
-    function setPages(int $newPages){
+    function setPages(int $newPages): bool{
         if($newPages > 0){
             $this->nbPages = $newPages;
+            return True;
         } else {
-            echo "Le nombre de pages doit être supérieur à 0<br>";
+            return False;
         }
         
     }
@@ -47,7 +48,9 @@ echo("Auteur du livre : " . $livre->getAuteur() . "<br>");
 echo("Nombre de pages du livre : " . $livre->getPages() . "<br>");
 $livre->setTitre("Les Fleurs du mal");
 $livre->setAuteur("Charles Baudelaire");
-$livre->setPages(-2);
+if (!$livre->setPages(-2)) {
+    echo "Le nombre de pages doit être supérieur à 0<br>";
+}
 $livre->setPages(392);
 echo("Nouveau Titre du livre : " . $livre->getTitre() . "<br>");
 echo("Nouvel Auteur du livre : " . $livre->getAuteur() . "<br>");

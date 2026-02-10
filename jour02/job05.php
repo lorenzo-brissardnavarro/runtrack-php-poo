@@ -41,52 +41,60 @@ class Voiture {
         return $this->reservoir;
     }
 
-    function setMarque(string $newMarque){
+    function setMarque(string $newMarque): void{
         $this->marque = $newMarque;
     }
 
-    function setModele(string $newModele){
+    function setModele(string $newModele): void{
         $this->modele = $newModele;
     }
 
-    function setAnnee(int $newAnnee){
+    function setAnnee(int $newAnnee): void{
         $this->annee = $newAnnee;
     }
 
-    function setKilometres(int $newKilometres){
+    function setKilometres(int $newKilometres): void{
         $this->kilometres = $newKilometres;
     }
 
-    function setEnMarche(bool $newEnMarche){
-        $this->en_marche = $newEnMarche;
+    function setReservoir(int $newReservoir): bool{
+        if ($newReservoir >= 0) {
+            $this->reservoir = $newReservoir;
+            return true;
+        }
+        return false;
     }
 
-    function setReservoir(int $newReservoir){
-        $this->reservoir = $newReservoir;
-    }
-
-    function demarrer(){
+    function demarrer(): bool{
         if($this->verifier_plein() > 5){
             $this->en_marche = True;
-            echo("Voiture démarrée !<br>");
+            return True;
         } else{
-            echo("Voiture à l'arrêt !<br>");
+            return False;
         }
     }
 
-    function arreter(){
+    function arreter(): void{
         $this->en_marche = False;
     }
 
-    private function verifier_plein(){
+    private function verifier_plein(): int{
         return $this->reservoir;
     }
 }
 
 $voiture = new Voiture("Peugeot", "Peugeot 208", 2012, 85000);
-$voiture->demarrer();
+if($voiture->demarrer()){
+    echo("Voiture démarrée !<br>");
+} else {
+    echo("Voiture à l'arrêt !<br>");
+}
 $voiture->setReservoir(4);
-$voiture->demarrer();
+if($voiture->demarrer()){
+    echo("Voiture démarrée !<br>");
+} else {
+    echo("Voiture à l'arrêt !<br>");
+}
 
 
 
