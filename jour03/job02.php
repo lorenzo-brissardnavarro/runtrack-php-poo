@@ -44,7 +44,7 @@ class Professeur extends Personne{
         $this->matiereEnseignee = $matiereEnseignee;
     }
 
-    public function enseigner(){
+    public function enseigner(): void{
         echo "Le cours va commencer<br>";
     }
 
