@@ -130,7 +130,14 @@ class Joueur {
         return $this->main->afficher();
     }
 
-    
+
+}
+
+class Croupier extends Joueur {
+
+    function doit_prendre_carte(): bool {
+        return $this->get_total() < 17;
+    }
 
 }
 
@@ -138,12 +145,12 @@ class Partie {
 
     public Jeu $jeu;
     public Joueur $joueur;
-    public Joueur $croupier;
+    public Croupier $croupier;
 
     function __construct(){
         $this->jeu = new Jeu();
         $this->joueur = new Joueur();
-        $this->croupier = new Joueur();
+        $this->croupier = new Croupier();
     }
 
     function initialiser(): void{
@@ -179,7 +186,7 @@ class Partie {
 
 
     function tour_croupier(): void{
-        while ($this->croupier->get_total() < 17) {
+        while ($this->croupier->doit_prendre_carte()) {
             $this->croupier->prendre_carte($this->jeu->retirer_carte());
         }
         echo "Main du croupier : " . $this->croupier->afficher_main() . "<br>";
