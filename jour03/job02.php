@@ -7,12 +7,12 @@ class Personne {
         $this->age = 14;
     }
 
-    function afficherAge(): int{
-        return $this->age;
+    function afficherAge(): string{
+        return (string)$this->age;
     }
 
-    function bonjour(){
-        echo "Hello<br>";
+    function bonjour(): string{
+        return "Hello<br>";
     }
 
     function setAge($newAge): void{
@@ -26,12 +26,12 @@ class Eleve extends Personne{
         parent::__construct();
     }
 
-    public function allerEnCours(){
-        echo "Je vais en cours<br>";
+    public function allerEnCours(): string{
+        return "Je vais en cours<br>";
     }
 
-    function afficherAgeEleve(): void{
-        echo "J'ai " . $this->age . " ans<br>";
+    function afficherAge(): string{
+        return "J'ai " . $this->age . " ans<br>";
     }
 }
 
@@ -44,21 +44,21 @@ class Professeur extends Personne{
         $this->matiereEnseignee = $matiereEnseignee;
     }
 
-    public function enseigner(): void{
-        echo "Le cours va commencer<br>";
+    public function enseigner(): string{
+        return "Le cours va commencer<br>";
     }
 
 }
 
 $eleve = new Eleve();
-$eleve->bonjour();
-$eleve->allerEnCours();
+echo $eleve->bonjour();
+echo $eleve->allerEnCours();
 $eleve->setAge(15);
-$eleve->afficherAge();
+echo $eleve->afficherAge();
 
 $professeur = new Professeur("Informatique");
-$professeur->bonjour();
-$professeur->enseigner();
+echo $professeur->bonjour();
+echo $professeur->enseigner();
 
 
 

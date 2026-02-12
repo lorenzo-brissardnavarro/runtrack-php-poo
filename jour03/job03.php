@@ -13,7 +13,7 @@ class Rectangle {
         return 2 * ($this->longueur + $this->largeur);
     }
 
-    function surface(){
+    function surface(): int{
         return $this->longueur * $this->largeur;
     }
 
@@ -45,9 +45,18 @@ class Parallelepipede extends Rectangle{
     function volume(): int{
         return $this->hauteur * $this->longueur * $this->largeur;
     }
+
+    function getHauteur(): int{
+        return $this->hauteur;
+    }
+
+    function setHauteur(int $newHauteur): void{
+        $this->hauteur = $newHauteur;
+    }
 }
 
 $rectangle = new Rectangle(10,5);
+echo "Données du rectangle : <br><br>";
 echo("Longueur du rectangle : " . $rectangle->getLongueur() . "<br>");
 echo("Largeur du rectangle : " . $rectangle->getLargeur() . "<br>");
 echo("Perimètre du rectangle : " . $rectangle->perimetre() . "<br>");
@@ -60,13 +69,17 @@ echo("Nouveau Perimètre du rectangle : " . $rectangle->perimetre() . "<br>");
 echo("Nouvelle Surface du rectangle : " . $rectangle->surface() . "<br>");
 
 $parallelepipede = new Parallelepipede(10,5,8);
-echo("<br>Longueur du parallelepipede : " . $parallelepipede->getLongueur() . "<br>");
+echo "<br>Données du parallelepipede : <br><br>";
+echo("Longueur du parallelepipede : " . $parallelepipede->getLongueur() . "<br>");
 echo("Largeur du parallelepipede : " . $parallelepipede->getLargeur() . "<br>");
+echo("Hauteur du parallelepipede : " . $parallelepipede->getHauteur() . "<br>");
 echo("Volume du parallelepipede : " . $parallelepipede->volume() . "<br>");
 $parallelepipede->setLongueur(8);
 $parallelepipede->setLargeur(3);
+$parallelepipede->setHauteur(5);
 echo("<br>Nouvelle Longueur du parallelepipede : " . $parallelepipede->getLongueur() . "<br>");
 echo("Nouvelle Largeur du parallelepipede : " . $parallelepipede->getLargeur() . "<br>");
+echo("Nouvelle Hauteur du parallelepipede : " . $parallelepipede->getHauteur() . "<br>");
 echo("Nouveau Volume du parallelepipede : " . $parallelepipede->volume() . "<br>");
 
 ?>
